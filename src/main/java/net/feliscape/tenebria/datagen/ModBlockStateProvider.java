@@ -1,6 +1,7 @@
 package net.feliscape.tenebria.datagen;
 
 import net.feliscape.tenebria.Tenebria;
+import net.feliscape.tenebria.block.ModBlocks;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -19,7 +20,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-
+        blockWithItem(ModBlocks.RIFTSTONE);
+        blockWithItem(ModBlocks.DUST_BLOCK);
     }
 
     public void hangingSignBlock(Block signBlock, Block wallSignBlock, ResourceLocation texture) {

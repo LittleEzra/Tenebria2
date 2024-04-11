@@ -1,6 +1,7 @@
 package net.feliscape.tenebria.block;
 
 import net.feliscape.tenebria.Tenebria;
+import net.feliscape.tenebria.block.custom.DustLayerBlock;
 import net.feliscape.tenebria.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -13,6 +14,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -23,6 +25,14 @@ import java.util.function.Supplier;
 public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, Tenebria.MOD_ID);
+
+
+    public static final RegistryObject<Block> RIFTSTONE = registerBlock("riftstone",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE).mapColor(MapColor.COLOR_GRAY)));
+    public static final RegistryObject<Block> DUST_BLOCK = registerBlock("dust_block",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.SNOW_BLOCK).mapColor(MapColor.COLOR_LIGHT_GRAY)));
+    public static final RegistryObject<Block> DUST = registerBlock("dust",
+            () -> new DustLayerBlock(BlockBehaviour.Properties.copy(Blocks.SNOW).mapColor(MapColor.COLOR_LIGHT_GRAY)));
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block)
     {

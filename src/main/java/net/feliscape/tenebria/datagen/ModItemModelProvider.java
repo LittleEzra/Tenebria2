@@ -1,6 +1,7 @@
 package net.feliscape.tenebria.datagen;
 
 import net.feliscape.tenebria.Tenebria;
+import net.feliscape.tenebria.block.ModBlocks;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -40,6 +41,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
+        blockItemSprite(ModBlocks.DUST);
     }
 
     // Shoutout to El_Redstoniano for making this

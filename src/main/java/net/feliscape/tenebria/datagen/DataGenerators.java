@@ -1,6 +1,7 @@
 package net.feliscape.tenebria.datagen;
 
 import net.feliscape.tenebria.Tenebria;
+import net.feliscape.tenebria.datagen.language.ModLanguageProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.data.DataGenerator;
@@ -39,6 +40,8 @@ public class DataGenerators {
 
         generator.addProvider(event.includeClient(), new ModBlockStateProvider(packOutput, existingFileHelper));
         generator.addProvider(event.includeClient(), new ModItemModelProvider(packOutput, existingFileHelper));
+
+        generator.addProvider(event.includeClient(), new ModLanguageProvider(packOutput, "en_us"));
 
         ModBlockTagGenerator blockTagGenerator = generator.addProvider(event.includeServer(),
                 new ModBlockTagGenerator(packOutput, lookupProvider, existingFileHelper));

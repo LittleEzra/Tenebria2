@@ -8,6 +8,7 @@ import net.feliscape.tenebria.item.ModItems;
 import net.feliscape.tenebria.networking.ModMessages;
 import net.feliscape.tenebria.sound.ModSounds;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -63,6 +64,10 @@ public class Tenebria
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
 
+    }
+
+    public static ResourceLocation asResource(String id) {
+        return new ResourceLocation(MOD_ID, id);
     }
 
     public static void printDebug(String line){

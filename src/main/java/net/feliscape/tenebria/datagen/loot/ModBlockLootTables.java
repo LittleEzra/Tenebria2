@@ -22,6 +22,11 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         /* Special Loot Tables:
         this.add(ModBlocks.BLOCK.get(),
                 block -> BUILDERFUNCTION);*/
+
+        dropSelf(ModBlocks.RIFTSTONE.get());
+
+        dropSelf(ModBlocks.DUST.get());
+        dropSelf(ModBlocks.DUST_BLOCK.get());
     }
 
     @Override
