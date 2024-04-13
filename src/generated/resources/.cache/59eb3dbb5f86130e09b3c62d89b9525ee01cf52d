@@ -1,0 +1,4 @@
+// 1.20.1	2024-04-11T11:40:00.2160598	Loot Tables
+118c2cbda42bf28ba21e604a3d51acfdf1cff86f data/tenebria/loot_tables/blocks/dust_block.json
+bf44189c94c25fdcdf4b54221cde1fdbd8292d08 data/tenebria/loot_tables/blocks/dust_pile.json
+06f4c067bdfae021100f1724878c6d2dbe09315d data/tenebria/loot_tables/blocks/riftstone.json

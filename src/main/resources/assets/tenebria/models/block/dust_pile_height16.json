@@ -1,6 +1,6 @@
 {
     "parent": "minecraft:block/cube_all",
     "textures": {
-        "all": "tenebria:block/dust"
+        "all": "tenebria:block/dust_pile"
     }
 }

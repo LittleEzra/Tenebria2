@@ -25,10 +25,32 @@ public class ModCreativeModeTabs {
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.RIFTSTONE.get()))
                     .title(Component.translatable("creativetab.tenebria.abyssal_building_tab"))
                     .displayItems((pParameters, pOutput) -> {
-                        pOutput.accept(ModBlocks.RIFTSTONE.get());
-
-                        pOutput.accept(ModBlocks.DUST.get());
+                        pOutput.accept(ModBlocks.DUST_PILE.get());
                         pOutput.accept(ModBlocks.DUST_BLOCK.get());
+
+                        pOutput.accept(ModBlocks.RIFTSTONE.get());
+                        pOutput.accept(ModBlocks.RIFTSTONE_SLAB.get());
+                        pOutput.accept(ModBlocks.RIFTSTONE_STAIRS.get());
+                        pOutput.accept(ModBlocks.RIFTSTONE_WALL.get());
+
+                        pOutput.accept(ModBlocks.POLISHED_RIFTSTONE.get());
+                        pOutput.accept(ModBlocks.POLISHED_RIFTSTONE_SLAB.get());
+                        pOutput.accept(ModBlocks.POLISHED_RIFTSTONE_STAIRS.get());
+                        pOutput.accept(ModBlocks.POLISHED_RIFTSTONE_BUTTON.get());
+                        pOutput.accept(ModBlocks.POLISHED_RIFTSTONE_PRESSURE_PLATE.get());
+                        pOutput.accept(ModBlocks.POLISHED_RIFTSTONE_WALL.get());
+
+                        pOutput.accept(ModBlocks.POLISHED_RIFTSTONE_BRICKS.get());
+                        pOutput.accept(ModBlocks.POLISHED_RIFTSTONE_BRICKS_SLAB.get());
+                        pOutput.accept(ModBlocks.POLISHED_RIFTSTONE_BRICKS_STAIRS.get());
+                        pOutput.accept(ModBlocks.POLISHED_RIFTSTONE_BRICKS_WALL.get());
+                    })
+                    .build());
+    public static final RegistryObject<CreativeModeTab> ABYSS_RESOURCES_TAB = CREATIVE_MODE_TABS.register("abyss_resources_tab",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.DUST.get()))
+                    .title(Component.translatable("creativetab.tenebria.abyss_resources_tab"))
+                    .displayItems((pParameters, pOutput) -> {
+                        pOutput.accept(ModItems.DUST.get());
 
                     })
                     .build());

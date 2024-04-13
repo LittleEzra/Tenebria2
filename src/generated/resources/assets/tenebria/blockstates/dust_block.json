@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "tenebria:block/dust_block"
+    }
+  }
+}

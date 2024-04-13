@@ -1,7 +1,7 @@
 {   "parent": "block/thin_block",
     "textures": {
-        "particle": "tenebria:block/dust",
-        "texture": "tenebria:block/dust"
+        "particle": "tenebria:block/dust_pile",
+        "texture": "tenebria:block/dust_pile"
     },
     "elements": [
         {   "from": [ 0, 0, 0 ],

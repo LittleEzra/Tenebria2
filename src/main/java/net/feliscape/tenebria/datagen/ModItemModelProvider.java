@@ -2,6 +2,7 @@ package net.feliscape.tenebria.datagen;
 
 import net.feliscape.tenebria.Tenebria;
 import net.feliscape.tenebria.block.ModBlocks;
+import net.feliscape.tenebria.item.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -41,7 +42,22 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        blockItemSprite(ModBlocks.DUST);
+        simpleItem(ModItems.DUST);
+        simpleItem(ModItems.ANCIENT_DUST);
+
+        manualBlockItem(ModBlocks.POLISHED_RIFTSTONE_STAIRS);
+        manualBlockItem(ModBlocks.POLISHED_RIFTSTONE_SLAB);
+        manualBlockItem(ModBlocks.POLISHED_RIFTSTONE_PRESSURE_PLATE);
+        wallItem(ModBlocks.POLISHED_RIFTSTONE_WALL, ModBlocks.POLISHED_RIFTSTONE);
+        buttonItem(ModBlocks.POLISHED_RIFTSTONE_BUTTON, ModBlocks.POLISHED_RIFTSTONE);
+
+        manualBlockItem(ModBlocks.POLISHED_RIFTSTONE_BRICKS_STAIRS);
+        manualBlockItem(ModBlocks.POLISHED_RIFTSTONE_BRICKS_SLAB);
+        wallItem(ModBlocks.POLISHED_RIFTSTONE_BRICKS_WALL, ModBlocks.POLISHED_RIFTSTONE_BRICKS);
+
+        manualBlockItem(ModBlocks.RIFTSTONE_STAIRS);
+        manualBlockItem(ModBlocks.RIFTSTONE_SLAB);
+        wallItem(ModBlocks.RIFTSTONE_WALL, ModBlocks.RIFTSTONE);
     }
 
     // Shoutout to El_Redstoniano for making this

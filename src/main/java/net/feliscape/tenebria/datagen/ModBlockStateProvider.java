@@ -20,8 +20,25 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        blockWithItem(ModBlocks.RIFTSTONE);
         blockWithItem(ModBlocks.DUST_BLOCK);
+
+        blockWithItem(ModBlocks.RIFTSTONE);
+        blockWithItem(ModBlocks.POLISHED_RIFTSTONE);
+        blockWithItem(ModBlocks.POLISHED_RIFTSTONE_BRICKS);
+
+        stairsBlock(((StairBlock) ModBlocks.RIFTSTONE_STAIRS.get()), blockTexture(ModBlocks.RIFTSTONE.get()));
+        slabBlock(((SlabBlock) ModBlocks.RIFTSTONE_SLAB.get()), blockTexture(ModBlocks.RIFTSTONE.get()), blockTexture(ModBlocks.RIFTSTONE.get()));
+        wallBlock(((WallBlock) ModBlocks.RIFTSTONE_WALL.get()), blockTexture(ModBlocks.RIFTSTONE.get()));
+
+        stairsBlock(((StairBlock) ModBlocks.POLISHED_RIFTSTONE_STAIRS.get()), blockTexture(ModBlocks.POLISHED_RIFTSTONE.get()));
+        slabBlock(((SlabBlock) ModBlocks.POLISHED_RIFTSTONE_SLAB.get()), blockTexture(ModBlocks.POLISHED_RIFTSTONE.get()), blockTexture(ModBlocks.POLISHED_RIFTSTONE.get()));
+        buttonBlock(((ButtonBlock) ModBlocks.POLISHED_RIFTSTONE_BUTTON.get()), blockTexture(ModBlocks.POLISHED_RIFTSTONE.get()));
+        pressurePlateBlock(((PressurePlateBlock) ModBlocks.POLISHED_RIFTSTONE_PRESSURE_PLATE.get()), blockTexture(ModBlocks.POLISHED_RIFTSTONE.get()));
+        wallBlock(((WallBlock) ModBlocks.POLISHED_RIFTSTONE_WALL.get()), blockTexture(ModBlocks.POLISHED_RIFTSTONE.get()));
+
+        stairsBlock(((StairBlock) ModBlocks.POLISHED_RIFTSTONE_BRICKS_STAIRS.get()), blockTexture(ModBlocks.POLISHED_RIFTSTONE_BRICKS.get()));
+        slabBlock(((SlabBlock) ModBlocks.POLISHED_RIFTSTONE_BRICKS_SLAB.get()), blockTexture(ModBlocks.POLISHED_RIFTSTONE_BRICKS.get()), blockTexture(ModBlocks.POLISHED_RIFTSTONE_BRICKS.get()));
+        wallBlock(((WallBlock) ModBlocks.POLISHED_RIFTSTONE_BRICKS_WALL.get()), blockTexture(ModBlocks.POLISHED_RIFTSTONE_BRICKS.get()));
     }
 
     public void hangingSignBlock(Block signBlock, Block wallSignBlock, ResourceLocation texture) {

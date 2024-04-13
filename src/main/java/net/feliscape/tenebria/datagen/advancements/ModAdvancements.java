@@ -28,11 +28,16 @@ public class ModAdvancements implements ForgeAdvancementProvider.AdvancementGene
     public static final List<ModAdvancement> ENTRIES = new ArrayList<>();
 
     public static final ModAdvancement
-            ROOT = create("root", b -> b.icon(ModBlocks.RIFTSTONE.get())
+            ROOT = create("root", b -> b.icon(ModItems.DUST.get())
             .title("The Abyss")
             .description("I hope you brought a light")
             .when(ConsumeItemTrigger.TriggerInstance.usedItem())
             .special(ModAdvancement.TaskType.SILENT)),
+
+            ANCIENT_DUST = create("ancient_dust", b -> b.icon(ModItems.ANCIENT_DUST.get())
+            .title("From Many Eons Ago")
+            .description("Collect Ancient Dust")
+            .when(ConsumeItemTrigger.TriggerInstance.usedItem())),
 
     END = null;
 

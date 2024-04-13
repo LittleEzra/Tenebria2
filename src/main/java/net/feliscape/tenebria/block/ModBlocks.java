@@ -13,8 +13,10 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -27,12 +29,54 @@ public class ModBlocks {
             DeferredRegister.create(ForgeRegistries.BLOCKS, Tenebria.MOD_ID);
 
 
-    public static final RegistryObject<Block> RIFTSTONE = registerBlock("riftstone",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE).mapColor(MapColor.COLOR_GRAY)));
     public static final RegistryObject<Block> DUST_BLOCK = registerBlock("dust_block",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.SNOW_BLOCK).mapColor(MapColor.COLOR_LIGHT_GRAY)));
-    public static final RegistryObject<Block> DUST = registerBlock("dust",
+    public static final RegistryObject<Block> DUST_PILE = registerBlock("dust_pile",
             () -> new DustLayerBlock(BlockBehaviour.Properties.copy(Blocks.SNOW).mapColor(MapColor.COLOR_LIGHT_GRAY)));
+
+    //region Riftstone
+    public static final RegistryObject<Block> RIFTSTONE = registerBlock("riftstone",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE).mapColor(MapColor.COLOR_GRAY)));
+    public static final RegistryObject<Block> RIFTSTONE_STAIRS = registerBlock("riftstone_stairs",
+            () -> new StairBlock(() -> ModBlocks.RIFTSTONE.get().defaultBlockState(),
+                    BlockBehaviour.Properties.copy(ModBlocks.RIFTSTONE.get())));
+    public static final RegistryObject<Block> RIFTSTONE_SLAB = registerBlock("riftstone_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.copy(ModBlocks.RIFTSTONE.get())));
+
+    public static final RegistryObject<Block> RIFTSTONE_WALL = registerBlock("riftstone_wall",
+            () -> new WallBlock(BlockBehaviour.Properties.copy(ModBlocks.RIFTSTONE.get())));
+    //endregion
+    //region Polished Riftstone
+    public static final RegistryObject<Block> POLISHED_RIFTSTONE = registerBlock("polished_riftstone",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE).mapColor(MapColor.COLOR_GRAY)));
+    public static final RegistryObject<Block> POLISHED_RIFTSTONE_STAIRS = registerBlock("polished_riftstone_stairs",
+            () -> new StairBlock(() -> ModBlocks.POLISHED_RIFTSTONE.get().defaultBlockState(),
+                    BlockBehaviour.Properties.copy(ModBlocks.POLISHED_RIFTSTONE.get())));
+    public static final RegistryObject<Block> POLISHED_RIFTSTONE_SLAB = registerBlock("polished_riftstone_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.copy(ModBlocks.POLISHED_RIFTSTONE.get())));
+
+    public static final RegistryObject<Block> POLISHED_RIFTSTONE_BUTTON = registerBlock("polished_riftstone_button",
+            () -> new ButtonBlock(BlockBehaviour.Properties.of().noCollission().strength(0.5F).pushReaction(PushReaction.DESTROY),
+                    BlockSetType.STONE, 20, false));
+    public static final RegistryObject<Block> POLISHED_RIFTSTONE_PRESSURE_PLATE = registerBlock("polished_riftstone_pressure_plate",
+            () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS,
+                    BlockBehaviour.Properties.copy(ModBlocks.POLISHED_RIFTSTONE.get()).noCollission().noOcclusion(), BlockSetType.STONE));
+    public static final RegistryObject<Block> POLISHED_RIFTSTONE_WALL = registerBlock("polished_riftstone_wall",
+            () -> new WallBlock(BlockBehaviour.Properties.copy(ModBlocks.POLISHED_RIFTSTONE.get())));
+    //endregion
+
+    //region Polished Riftstone Bricks
+    public static final RegistryObject<Block> POLISHED_RIFTSTONE_BRICKS = registerBlock("polished_riftstone_bricks",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE).mapColor(MapColor.COLOR_GRAY)));
+    public static final RegistryObject<Block> POLISHED_RIFTSTONE_BRICKS_STAIRS = registerBlock("polished_riftstone_bricks_stairs",
+            () -> new StairBlock(() -> ModBlocks.POLISHED_RIFTSTONE_BRICKS.get().defaultBlockState(),
+                    BlockBehaviour.Properties.copy(ModBlocks.POLISHED_RIFTSTONE_BRICKS.get())));
+    public static final RegistryObject<Block> POLISHED_RIFTSTONE_BRICKS_SLAB = registerBlock("polished_riftstone_bricks_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.copy(ModBlocks.POLISHED_RIFTSTONE_BRICKS.get())));
+
+    public static final RegistryObject<Block> POLISHED_RIFTSTONE_BRICKS_WALL = registerBlock("polished_riftstone_bricks_wall",
+            () -> new WallBlock(BlockBehaviour.Properties.copy(ModBlocks.POLISHED_RIFTSTONE_BRICKS.get())));
+    //endregion
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block)
     {
