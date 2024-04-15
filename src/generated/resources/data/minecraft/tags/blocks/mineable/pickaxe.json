@@ -1,5 +1,19 @@
 {
   "values": [
-    "tenebria:riftstone"
+    "tenebria:distillery",
+    "tenebria:riftstone",
+    "tenebria:riftstone_slab",
+    "tenebria:riftstone_stairs",
+    "tenebria:riftstone_wall",
+    "tenebria:polished_riftstone",
+    "tenebria:polished_riftstone_slab",
+    "tenebria:polished_riftstone_stairs",
+    "tenebria:polished_riftstone_button",
+    "tenebria:polished_riftstone_pressure_plate",
+    "tenebria:polished_riftstone_wall",
+    "tenebria:polished_riftstone_bricks",
+    "tenebria:polished_riftstone_bricks_slab",
+    "tenebria:polished_riftstone_bricks_stairs",
+    "tenebria:polished_riftstone_bricks_wall"
   ]
 }

@@ -26,6 +26,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.DUST_BLOCK.get());
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(
+                        ModBlocks.DISTILLERY.get(),
                         ModBlocks.RIFTSTONE.get(),
                         ModBlocks.RIFTSTONE_SLAB.get(),
                         ModBlocks.RIFTSTONE_STAIRS.get(),

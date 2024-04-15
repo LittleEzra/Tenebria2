@@ -1,2 +1,14 @@
-// 1.20.1	2024-04-11T11:06:50.7694992	Item Models: tenebria
+// 1.20.1	2024-04-13T21:26:54.9409486	Item Models: tenebria
+c9960aaeaff5cdc81cfed76d7dd55a01b17dbedb assets/tenebria/models/item/ancient_dust.json
 bbc2faa2b910c5ab61c208e57c12bb5513eb3279 assets/tenebria/models/item/dust.json
+c5108c9d166faafce64ee77c9724711dead8b229 assets/tenebria/models/item/polished_riftstone_bricks_slab.json
+383188f70d1057fc42a0d5c5a1946ce51c20990e assets/tenebria/models/item/polished_riftstone_bricks_stairs.json
+8248c1b99842802cce24eb49db244b2dcf9b4745 assets/tenebria/models/item/polished_riftstone_bricks_wall.json
+a5db9d9efcf7c0239ed18d82fb34c6dab916e675 assets/tenebria/models/item/polished_riftstone_button.json
+0cad9bc9e4a8224856ef24cf53690150fd74647d assets/tenebria/models/item/polished_riftstone_pressure_plate.json
+e7011e01e5c0b832cf41bdb043b6143717a53937 assets/tenebria/models/item/polished_riftstone_slab.json
+0bab37381b6c20cc5a7ea85877a56f748a5529e8 assets/tenebria/models/item/polished_riftstone_stairs.json
+804e4d85696d2396502bd6cb0829226838d0b500 assets/tenebria/models/item/polished_riftstone_wall.json
+3066bba6dfe3a743c8cdb8db8d952ac657b2111c assets/tenebria/models/item/riftstone_slab.json
+0d8ec7bcebcf51dfd674853fc34097f7e7a4ff7f assets/tenebria/models/item/riftstone_stairs.json
+136607a89b36be142193fd981dd2ef6be2c3d3f7 assets/tenebria/models/item/riftstone_wall.json

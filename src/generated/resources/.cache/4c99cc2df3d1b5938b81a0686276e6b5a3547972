@@ -1,3 +1,4 @@
-// 1.20.1	2024-04-11T11:36:13.5968478	Tags for minecraft:block mod id tenebria
-1d152aa8ac5a2d74a367177b0588c18ee85b1de1 data/minecraft/tags/blocks/mineable/pickaxe.json
+// 1.20.1	2024-04-15T10:52:05.4095055	Tags for minecraft:block mod id tenebria
+8d22c01d01dca8e10ec5e8f2534ff48beff293fd data/minecraft/tags/blocks/mineable/pickaxe.json
 e012cc93ac7fbaeedeba43e9aa12f92bd3f8d52e data/minecraft/tags/blocks/mineable/shovel.json
+eee5afe8baa18d4b0add2a2040f1342619bf8da0 data/minecraft/tags/blocks/walls.json

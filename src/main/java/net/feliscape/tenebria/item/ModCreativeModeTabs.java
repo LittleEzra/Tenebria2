@@ -27,6 +27,7 @@ public class ModCreativeModeTabs {
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModBlocks.DUST_PILE.get());
                         pOutput.accept(ModBlocks.DUST_BLOCK.get());
+                        pOutput.accept(ModBlocks.CRUMBLING_BONE.get());
 
                         pOutput.accept(ModBlocks.RIFTSTONE.get());
                         pOutput.accept(ModBlocks.RIFTSTONE_SLAB.get());
@@ -44,6 +45,8 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModBlocks.POLISHED_RIFTSTONE_BRICKS_SLAB.get());
                         pOutput.accept(ModBlocks.POLISHED_RIFTSTONE_BRICKS_STAIRS.get());
                         pOutput.accept(ModBlocks.POLISHED_RIFTSTONE_BRICKS_WALL.get());
+
+                        pOutput.accept(ModBlocks.DISTILLERY.get());
                     })
                     .build());
     public static final RegistryObject<CreativeModeTab> ABYSS_RESOURCES_TAB = CREATIVE_MODE_TABS.register("abyss_resources_tab",
@@ -51,6 +54,7 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("creativetab.tenebria.abyss_resources_tab"))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModItems.DUST.get());
+                        pOutput.accept(ModItems.ANCIENT_DUST.get());
 
                     })
                     .build());

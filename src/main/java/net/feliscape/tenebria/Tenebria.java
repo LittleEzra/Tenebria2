@@ -2,14 +2,22 @@ package net.feliscape.tenebria;
 
 import com.mojang.logging.LogUtils;
 import net.feliscape.tenebria.block.ModBlocks;
+import net.feliscape.tenebria.block.entity.ModBlockEntities;
 import net.feliscape.tenebria.entity.ModEntityTypes;
 import net.feliscape.tenebria.item.ModCreativeModeTabs;
 import net.feliscape.tenebria.item.ModItems;
+import net.feliscape.tenebria.item.custom.CapturedSoulsItem;
 import net.feliscape.tenebria.networking.ModMessages;
+import net.feliscape.tenebria.screen.DistilleryScreen;
+import net.feliscape.tenebria.screen.ModMenuTypes;
 import net.feliscape.tenebria.sound.ModSounds;
+import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.item.ClampedItemPropertyFunction;
+import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -44,7 +52,11 @@ public class Tenebria
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
 
+        ModMenuTypes.register(modEventBus);
+
         ModEntityTypes.register(modEventBus);
+
+        ModBlockEntities.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
@@ -57,6 +69,10 @@ public class Tenebria
     {
         event.enqueueWork(() -> {
             ModMessages.register();
+
+            ItemProperties.register(ModItems.CAPTURED_SOULS.get(), asResource("souls"), (ClampedItemPropertyFunction)(itemStack, level, livingEntity, seed) -> {
+                return 0.25f * Mth.ceil(CapturedSoulsItem.getSouls(itemStack) / 4f);
+            });
         });
     }
 
@@ -106,7 +122,7 @@ public class Tenebria
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
-
+            MenuScreens.register(ModMenuTypes.DISTILLERY_MENU.get(), DistilleryScreen::new);
         }
     }
 }

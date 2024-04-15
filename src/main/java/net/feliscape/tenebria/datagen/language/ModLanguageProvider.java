@@ -31,9 +31,12 @@ public class ModLanguageProvider extends LanguageProvider {
 
         this.addItem(ModItems.DUST, "Dust");
         this.addItem(ModItems.ANCIENT_DUST, "Ancient Dust");
+        this.addItem(ModItems.CAPTURED_SOULS, "Captured Souls");
+        this.add("item.tenebria.captured_souls.tooltip", "%1$s Souls");
 
         this.addBlock(ModBlocks.DUST_PILE, "Dust Pile");
         this.addBlock(ModBlocks.DUST_BLOCK, "Dust Block");
+        this.addBlock(ModBlocks.CRUMBLING_BONE, "Crumbling Bone");
 
         this.addBlock(ModBlocks.RIFTSTONE, "Riftstone");
         this.addBlock(ModBlocks.RIFTSTONE_SLAB, "Riftstone");
@@ -51,6 +54,10 @@ public class ModLanguageProvider extends LanguageProvider {
         this.addBlock(ModBlocks.POLISHED_RIFTSTONE_BRICKS_SLAB, "Polished Riftstone Bricks Slab");
         this.addBlock(ModBlocks.POLISHED_RIFTSTONE_BRICKS_STAIRS, "Polished Riftstone Bricks Stairs");
         this.addBlock(ModBlocks.POLISHED_RIFTSTONE_BRICKS_WALL, "Polished Riftstone Bricks Wall");
+
+        this.addBlock(ModBlocks.DISTILLERY, "Distillery");
+
+        this.add("container.tenebria.distillery", "Distillery");
 
         this.add("creativetab.tenebria.abyssal_building_tab", "Abyss Building Blocks");
         this.add("creativetab.tenebria.abyssal_nature_tab", "Abyss Nature");

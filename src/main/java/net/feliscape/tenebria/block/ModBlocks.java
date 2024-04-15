@@ -1,6 +1,7 @@
 package net.feliscape.tenebria.block;
 
 import net.feliscape.tenebria.Tenebria;
+import net.feliscape.tenebria.block.custom.DistilleryBlock;
 import net.feliscape.tenebria.block.custom.DustLayerBlock;
 import net.feliscape.tenebria.item.ModItems;
 import net.minecraft.core.BlockPos;
@@ -33,6 +34,12 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.SNOW_BLOCK).mapColor(MapColor.COLOR_LIGHT_GRAY)));
     public static final RegistryObject<Block> DUST_PILE = registerBlock("dust_pile",
             () -> new DustLayerBlock(BlockBehaviour.Properties.copy(Blocks.SNOW).mapColor(MapColor.COLOR_LIGHT_GRAY)));
+
+    public static final RegistryObject<Block> DISTILLERY = registerBlock("distillery",
+            () -> new DistilleryBlock(BlockBehaviour.Properties.copy(Blocks.FURNACE).sound(SoundType.GLASS).noOcclusion()));
+
+    public static final RegistryObject<Block> CRUMBLING_BONE = registerBlock("crumbling_bone",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.BONE_BLOCK).mapColor(MapColor.COLOR_BROWN)));
 
     //region Riftstone
     public static final RegistryObject<Block> RIFTSTONE = registerBlock("riftstone",

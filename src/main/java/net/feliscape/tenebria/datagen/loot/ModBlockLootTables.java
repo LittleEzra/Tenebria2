@@ -5,6 +5,7 @@ import net.feliscape.tenebria.block.custom.DustLayerBlock;
 import net.feliscape.tenebria.item.ModItems;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.loot.BlockLootSubProvider;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
@@ -19,6 +20,7 @@ import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Set;
@@ -37,6 +39,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         /* Special Loot Tables:
         this.add(ModBlocks.BLOCK.get(),
                 block -> BUILDERFUNCTION);*/
+
+        dropSelf(ModBlocks.DISTILLERY.get());
 
         dropSelf(ModBlocks.RIFTSTONE.get());
         dropSelf(ModBlocks.RIFTSTONE_STAIRS.get());
@@ -68,6 +72,10 @@ public class ModBlockLootTables extends BlockLootSubProvider {
             }).when(HAS_NO_SILK_TOUCH), AlternativesEntry.alternatives(DustLayerBlock.LAYERS.getPossibleValues(), (statePredicateBuilder) -> {
                 return (LootPoolEntryContainer.Builder<?>)(statePredicateBuilder == 8 ? LootItem.lootTableItem(ModBlocks.DUST_BLOCK.get()) : LootItem.lootTableItem(ModBlocks.DUST_PILE.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly((float)statePredicateBuilder.intValue()))).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DustLayerBlock.LAYERS, statePredicateBuilder))));
             }))));
+        });
+
+        this.add(ModBlocks.CRUMBLING_BONE.get(), block -> {
+            return createSingleItemTableWithSilkTouch(block, ModItems.ANCIENT_DUST.get(), UniformGenerator.between(2f, 4f));
         });
     }
 
