@@ -1,4 +1,4 @@
-// 1.20.1	2024-04-13T21:26:54.9409486	Item Models: tenebria
+// 1.20.1	2024-04-16T12:32:30.4708272	Item Models: tenebria
 c9960aaeaff5cdc81cfed76d7dd55a01b17dbedb assets/tenebria/models/item/ancient_dust.json
 bbc2faa2b910c5ab61c208e57c12bb5513eb3279 assets/tenebria/models/item/dust.json
 c5108c9d166faafce64ee77c9724711dead8b229 assets/tenebria/models/item/polished_riftstone_bricks_slab.json
@@ -12,3 +12,6 @@ e7011e01e5c0b832cf41bdb043b6143717a53937 assets/tenebria/models/item/polished_ri
 3066bba6dfe3a743c8cdb8db8d952ac657b2111c assets/tenebria/models/item/riftstone_slab.json
 0d8ec7bcebcf51dfd674853fc34097f7e7a4ff7f assets/tenebria/models/item/riftstone_stairs.json
 136607a89b36be142193fd981dd2ef6be2c3d3f7 assets/tenebria/models/item/riftstone_wall.json
+493cea4d09a85b57faf5e1250e974335466c26bd assets/tenebria/models/item/soul_jar.json
+54159f9a6c47670a2b8126fbd6676cd2b3f7579f assets/tenebria/models/item/soul_steel_ingot.json
+e1266ff78e261cd37d565dda0116143fa0d75084 assets/tenebria/models/item/stone_bread.json

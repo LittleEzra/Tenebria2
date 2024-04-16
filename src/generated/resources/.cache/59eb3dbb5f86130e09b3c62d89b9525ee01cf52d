@@ -1,4 +1,6 @@
-// 1.20.1	2024-04-15T10:52:05.3945429	Loot Tables
+// 1.20.1	2024-04-16T11:16:39.0214293	Loot Tables
+344161769a715cd030fa8174723be6b2c1ef995b data/tenebria/loot_tables/blocks/alchemy_table.json
+2a0b8d6f771210a32ebb9d4d6299e304df87beab data/tenebria/loot_tables/blocks/crumbling_bone.json
 90f049aa826f96596eb306c9cf4d31dc7f31cb22 data/tenebria/loot_tables/blocks/distillery.json
 df0b6d8c23fb62ab01a9ee9cd3a2c0d3da379041 data/tenebria/loot_tables/blocks/dust_block.json
 bf44189c94c25fdcdf4b54221cde1fdbd8292d08 data/tenebria/loot_tables/blocks/dust_pile.json
@@ -16,3 +18,4 @@ ad718ae8349bf8c9fb22a59ca59ff0e5b33cce4a data/tenebria/loot_tables/blocks/polish
 580dd7913be87a7f9661763133f0394eb86f9684 data/tenebria/loot_tables/blocks/riftstone_slab.json
 35f6a959943ea47249927f2d3049eea17dd15657 data/tenebria/loot_tables/blocks/riftstone_stairs.json
 e74190edd1a4f9748c0bb153f36bb839ddfcc9db data/tenebria/loot_tables/blocks/riftstone_wall.json
+97ee7af8ace36db5135276fd9be59b99182a0e4e data/tenebria/loot_tables/blocks/soul_steel_block.json

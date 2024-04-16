@@ -21,7 +21,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         blockWithItem(ModBlocks.DUST_BLOCK);
-        axisBlockWithItem(((RotatedPillarBlock) ModBlocks.DUST_BLOCK.get()));
+        axisBlockWithItem(((RotatedPillarBlock) ModBlocks.CRUMBLING_BONE.get()));
+        blockWithItem(ModBlocks.SOUL_STEEL_BLOCK);
 
         blockWithItem(ModBlocks.RIFTSTONE);
         blockWithItem(ModBlocks.POLISHED_RIFTSTONE);

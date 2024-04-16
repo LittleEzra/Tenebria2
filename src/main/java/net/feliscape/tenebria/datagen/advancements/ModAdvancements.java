@@ -3,16 +3,14 @@ package net.feliscape.tenebria.datagen.advancements;
 import net.feliscape.tenebria.Tenebria;
 import net.feliscape.tenebria.advancements.ModAdvancement;
 import net.feliscape.tenebria.block.ModBlocks;
-import net.feliscape.tenebria.entity.ModEntityTypes;
 import net.feliscape.tenebria.item.ModItems;
-import net.feliscape.tenebria.util.ModTags;
+import net.feliscape.tenebria.item.custom.SoulContainerItem;
 import net.minecraft.advancements.Advancement;
-import net.minecraft.advancements.AdvancementRewards;
-import net.minecraft.advancements.FrameType;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.common.data.ForgeAdvancementProvider;
@@ -28,22 +26,45 @@ public class ModAdvancements implements ForgeAdvancementProvider.AdvancementGene
     public static final List<ModAdvancement> ENTRIES = new ArrayList<>();
 
     public static final ModAdvancement
-            ROOT = create("root", b -> b.icon(ModItems.DUST.get())
+            ROOT = create("tenebria", "root", b -> b.icon(ModBlocks.RIFTSTONE.get())
             .title("The Abyss")
             .description("I hope you brought a light")
             .when(ConsumeItemTrigger.TriggerInstance.usedItem())
             .special(ModAdvancement.TaskType.SILENT)),
 
-            ANCIENT_DUST = create("ancient_dust", b -> b.icon(ModItems.ANCIENT_DUST.get())
+            STONE_BREAD = create("tenebria", "stone_bread", b -> b.icon(ModItems.STONE_BREAD.get())
+            .title("Clack Clack")
+            .description("Find Stone Bread; \"Stale\" is an understatement")
+            .whenGetIcon()
+            .after(ROOT)),
+
+            ANCIENT_DUST = create("tenebria", "ancient_dust", b -> b.icon(ModItems.ANCIENT_DUST.get())
             .title("From Many Eons Ago")
             .description("Collect Ancient Dust")
-            .when(ConsumeItemTrigger.TriggerInstance.usedItem())),
+            .whenGetIcon()
+            .after(ROOT)),
+
+            CAPTURED_SOULS = create("tenebria", "captured_souls", b ->
+                    b.icon(SoulContainerItem.setSouls(new ItemStack(ModItems.CAPTURED_SOUL_BOTTLE.get()), 10))
+            .title("Got You!")
+            .description("Distill and capture souls from Ancient Dust")
+            .whenGet(ModItems.CAPTURED_SOUL_BOTTLE.get(), ModItems.CAPTURED_SOUL_JAR.get())
+            .after(ANCIENT_DUST)),
+
+            SOUL_STEEL = create("tenebria", "soul_steel", b -> b.icon(ModItems.SOUL_STEEL_INGOT.get())
+            .title("50% Brain Matter")
+            .description("Transform an Iron Ingot into Soul Steel")
+            .whenGetIcon()
+            .after(CAPTURED_SOULS)),
 
     END = null;
 
 
     private static ModAdvancement create(String id, UnaryOperator<ModAdvancement.Builder> b) {
         return new ModAdvancement(id, b);
+    }
+    private static ModAdvancement create(String subfolder, String id, UnaryOperator<ModAdvancement.Builder> b) {
+        return new ModAdvancement(subfolder, id, b);
     }
 
     @Override

@@ -32,7 +32,7 @@ public class DistilleryScreen extends AbstractContainerScreen<DistilleryMenu> {
         int x = this.leftPos;
         int y = this.topPos;
         guiGraphics.blit(TEXTURE, x, y, 0, 0, this.imageWidth, this.imageHeight);
-        guiGraphics.drawString(this.font, Integer.toString(this.menu.getSoulAmount()), x + 120, y + 39, ColorUtil.getIntColor("#60f5fa"));
+        guiGraphics.drawString(this.font, Integer.toString(this.menu.getSoulAmount()), x + 121, y + 39, 4210752, false);
         if (this.menu.isLit()) {
             int litProgress = this.menu.getLitProgress();
             guiGraphics.blit(TEXTURE, x + 56, y + 36 + 12 - litProgress, 176, 12 - litProgress, 14, litProgress + 1);

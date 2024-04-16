@@ -1,6 +1,7 @@
 package net.feliscape.tenebria.block;
 
 import net.feliscape.tenebria.Tenebria;
+import net.feliscape.tenebria.block.custom.AlchemyTableBlock;
 import net.feliscape.tenebria.block.custom.DistilleryBlock;
 import net.feliscape.tenebria.block.custom.DustLayerBlock;
 import net.feliscape.tenebria.item.ModItems;
@@ -34,12 +35,17 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.SNOW_BLOCK).mapColor(MapColor.COLOR_LIGHT_GRAY)));
     public static final RegistryObject<Block> DUST_PILE = registerBlock("dust_pile",
             () -> new DustLayerBlock(BlockBehaviour.Properties.copy(Blocks.SNOW).mapColor(MapColor.COLOR_LIGHT_GRAY)));
+    public static final RegistryObject<Block> SOUL_STEEL_BLOCK = registerBlock("soul_steel_block",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).mapColor(MapColor.COLOR_LIGHT_BLUE)));
 
     public static final RegistryObject<Block> DISTILLERY = registerBlock("distillery",
             () -> new DistilleryBlock(BlockBehaviour.Properties.copy(Blocks.FURNACE).sound(SoundType.GLASS).noOcclusion()));
+    public static final RegistryObject<Block> ALCHEMY_TABLE = registerBlock("alchemy_table",
+            () -> new AlchemyTableBlock(BlockBehaviour.Properties.copy(Blocks.ENCHANTING_TABLE).noOcclusion()));
 
     public static final RegistryObject<Block> CRUMBLING_BONE = registerBlock("crumbling_bone",
-            () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.BONE_BLOCK).mapColor(MapColor.COLOR_BROWN)));
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.BONE_BLOCK).mapColor(MapColor.COLOR_BROWN)
+                    .strength(1.25f)));
 
     //region Riftstone
     public static final RegistryObject<Block> RIFTSTONE = registerBlock("riftstone",

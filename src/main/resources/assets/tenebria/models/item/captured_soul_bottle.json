@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "tenebria:item/captured_souls_empty"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "tenebria:bottle_souls": 0.125
+      },
+      "model": "tenebria:item/captured_soul_bottle_low"
+    },
+    {
+      "predicate": {
+        "tenebria:bottle_souls": 0.25
+      },
+      "model": "tenebria:item/captured_soul_bottle_medium"
+    },
+    {
+      "predicate": {
+        "tenebria:bottle_souls": 0.375
+      },
+      "model": "tenebria:item/captured_soul_bottle_high"
+    },
+    {
+      "predicate": {
+        "tenebria:bottle_souls": 0.5
+      },
+      "model": "tenebria:item/captured_soul_bottle_full"
+    }
+  ]
+}

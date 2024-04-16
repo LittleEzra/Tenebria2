@@ -47,6 +47,8 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModBlocks.POLISHED_RIFTSTONE_BRICKS_WALL.get());
 
                         pOutput.accept(ModBlocks.DISTILLERY.get());
+                        pOutput.accept(ModBlocks.ALCHEMY_TABLE.get());
+                        pOutput.accept(ModBlocks.SOUL_STEEL_BLOCK.get());
                     })
                     .build());
     public static final RegistryObject<CreativeModeTab> ABYSS_RESOURCES_TAB = CREATIVE_MODE_TABS.register("abyss_resources_tab",
@@ -55,6 +57,9 @@ public class ModCreativeModeTabs {
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModItems.DUST.get());
                         pOutput.accept(ModItems.ANCIENT_DUST.get());
+                        pOutput.accept(ModItems.SOUL_JAR.get());
+                        pOutput.accept(ModItems.SOUL_STEEL_INGOT.get());
+                        pOutput.accept(ModItems.STONE_BREAD.get());
 
                     })
                     .build());

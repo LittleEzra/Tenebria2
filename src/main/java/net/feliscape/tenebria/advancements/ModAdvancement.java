@@ -34,12 +34,27 @@ public class ModAdvancement {
     Advancement datagenResult;
 
     private String id;
+    private String subfolder = "";
     private String title;
     private String description;
 
     public ModAdvancement(String id, UnaryOperator<Builder> b) {
         this.builder = Advancement.Builder.advancement();
         this.id = id;
+
+        Builder t = new Builder();
+        b.apply(t);
+
+        builder.display(t.icon, Component.translatable(titleKey()),
+                Component.translatable(descriptionKey()).withStyle(s -> s.withColor(0xDBA213)),
+                id.equals("root") ? BACKGROUND : null, t.type.frame, t.type.toast, t.type.announce, t.type.hide);
+
+        ModAdvancements.ENTRIES.add(this);
+    }
+    public ModAdvancement(String subfolder, String id, UnaryOperator<Builder> b) {
+        this.builder = Advancement.Builder.advancement();
+        this.id = id;
+        this.subfolder = subfolder;
 
         Builder t = new Builder();
         b.apply(t);
@@ -82,7 +97,7 @@ public class ModAdvancement {
     public void save(Consumer<Advancement> t) {
         if (parent != null)
             builder.parent(parent.datagenResult);
-        datagenResult = builder.save(t, Tenebria.asResource(id)
+        datagenResult = builder.save(t, Tenebria.asResource(subfolder.isEmpty() ? id : subfolder + "/" + id)
                 .toString());
     }
 
@@ -160,8 +175,7 @@ public class ModAdvancement {
             return externalTrigger(InventoryChangeTrigger.TriggerInstance.hasItems(icon.getItem()));
         }
         public Builder whenGet(ItemLike... items) {
-            InventoryChangeTrigger.TriggerInstance.hasItems(items);
-            return this;
+            return externalTrigger(InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(items).build()));
         }
         public Builder whenGotAll(ItemLike... items) {
             for(ItemLike item : items) {

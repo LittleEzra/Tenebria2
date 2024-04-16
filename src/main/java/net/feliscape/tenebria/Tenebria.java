@@ -6,8 +6,10 @@ import net.feliscape.tenebria.block.entity.ModBlockEntities;
 import net.feliscape.tenebria.entity.ModEntityTypes;
 import net.feliscape.tenebria.item.ModCreativeModeTabs;
 import net.feliscape.tenebria.item.ModItems;
-import net.feliscape.tenebria.item.custom.CapturedSoulsItem;
+import net.feliscape.tenebria.item.custom.SoulContainerItem;
 import net.feliscape.tenebria.networking.ModMessages;
+import net.feliscape.tenebria.recipe.ModRecipes;
+import net.feliscape.tenebria.screen.AlchemyTableScreen;
 import net.feliscape.tenebria.screen.DistilleryScreen;
 import net.feliscape.tenebria.screen.ModMenuTypes;
 import net.feliscape.tenebria.sound.ModSounds;
@@ -55,6 +57,7 @@ public class Tenebria
         ModMenuTypes.register(modEventBus);
 
         ModEntityTypes.register(modEventBus);
+        ModRecipes.register(modEventBus);
 
         ModBlockEntities.register(modEventBus);
 
@@ -70,8 +73,11 @@ public class Tenebria
         event.enqueueWork(() -> {
             ModMessages.register();
 
-            ItemProperties.register(ModItems.CAPTURED_SOULS.get(), asResource("souls"), (ClampedItemPropertyFunction)(itemStack, level, livingEntity, seed) -> {
-                return 0.25f * Mth.ceil(CapturedSoulsItem.getSouls(itemStack) / 4f);
+            ItemProperties.register(ModItems.CAPTURED_SOUL_BOTTLE.get(), asResource("bottle_souls"), (ClampedItemPropertyFunction)(itemStack, level, livingEntity, seed) -> {
+                return 0.125f * Mth.ceil(SoulContainerItem.getSouls(itemStack) / 4f);
+            });
+            ItemProperties.register(ModItems.CAPTURED_SOUL_JAR.get(), asResource("jar_souls"), (ClampedItemPropertyFunction)(itemStack, level, livingEntity, seed) -> {
+                return 0.125f * Mth.ceil(SoulContainerItem.getSouls(itemStack) / 4f);
             });
         });
     }
@@ -123,6 +129,7 @@ public class Tenebria
         public static void onClientSetup(FMLClientSetupEvent event)
         {
             MenuScreens.register(ModMenuTypes.DISTILLERY_MENU.get(), DistilleryScreen::new);
+            MenuScreens.register(ModMenuTypes.ALCHEMY_TABLE_MENU.get(), AlchemyTableScreen::new);
         }
     }
 }

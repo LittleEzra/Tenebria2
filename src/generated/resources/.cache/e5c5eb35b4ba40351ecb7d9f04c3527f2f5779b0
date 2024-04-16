@@ -1,3 +1,6 @@
-// 1.20.1	2024-04-13T21:26:54.9459356	Advancements
-836ccd087d6c7f9b98d8d71f04909b4480bf7ec2 data/tenebria/advancements/ancient_dust.json
-d26b748ceed0af7c56fa31db1c64edec283c164a data/tenebria/advancements/root.json
+// 1.20.1	2024-04-16T12:32:30.4917719	Advancements
+cd5a9129162a8dca6f23d23283ed01cac8afa2cb data/tenebria/advancements/tenebria/ancient_dust.json
+23b30c858eb2e828af4ecd96451cd5c0e00e1814 data/tenebria/advancements/tenebria/captured_souls.json
+a7ac14fe787904cfc3b299038fd32ba5163342eb data/tenebria/advancements/tenebria/root.json
+c588f443eda89f179f380cd05c245a3ade3e5726 data/tenebria/advancements/tenebria/soul_steel.json
+a70e4eb3f4be3c2ecc6b178dc787e1ac91456602 data/tenebria/advancements/tenebria/stone_bread.json

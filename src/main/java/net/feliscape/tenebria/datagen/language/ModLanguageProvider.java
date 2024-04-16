@@ -31,12 +31,17 @@ public class ModLanguageProvider extends LanguageProvider {
 
         this.addItem(ModItems.DUST, "Dust");
         this.addItem(ModItems.ANCIENT_DUST, "Ancient Dust");
-        this.addItem(ModItems.CAPTURED_SOULS, "Captured Souls");
+        this.addItem(ModItems.CAPTURED_SOUL_BOTTLE, "Bottle of Captured Souls");
+        this.addItem(ModItems.SOUL_JAR, "Soul Jar");
+        this.addItem(ModItems.CAPTURED_SOUL_JAR, "Jar of Captured Souls");
         this.add("item.tenebria.captured_souls.tooltip", "%1$s Souls");
+        this.addItem(ModItems.SOUL_STEEL_INGOT, "Soul Steel Ingot");
+        this.addItem(ModItems.STONE_BREAD, "Stone Bread");
 
         this.addBlock(ModBlocks.DUST_PILE, "Dust Pile");
         this.addBlock(ModBlocks.DUST_BLOCK, "Dust Block");
         this.addBlock(ModBlocks.CRUMBLING_BONE, "Crumbling Bone");
+        this.addBlock(ModBlocks.SOUL_STEEL_BLOCK, "Soul Steel Block");
 
         this.addBlock(ModBlocks.RIFTSTONE, "Riftstone");
         this.addBlock(ModBlocks.RIFTSTONE_SLAB, "Riftstone");
@@ -56,6 +61,7 @@ public class ModLanguageProvider extends LanguageProvider {
         this.addBlock(ModBlocks.POLISHED_RIFTSTONE_BRICKS_WALL, "Polished Riftstone Bricks Wall");
 
         this.addBlock(ModBlocks.DISTILLERY, "Distillery");
+        this.addBlock(ModBlocks.ALCHEMY_TABLE, "Alchemy Table");
 
         this.add("container.tenebria.distillery", "Distillery");
 

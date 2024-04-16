@@ -1,0 +1,56 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "tenebria:item/soul_jar"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "tenebria:jar_souls": 0.125
+      },
+      "model": "tenebria:item/captured_soul_jar_1"
+    },
+    {
+      "predicate": {
+        "tenebria:jar_souls": 0.25
+      },
+      "model": "tenebria:item/captured_soul_jar_2"
+    },
+    {
+      "predicate": {
+        "tenebria:jar_souls": 0.375
+      },
+      "model": "tenebria:item/captured_soul_jar_3"
+    },
+    {
+      "predicate": {
+        "tenebria:jar_souls": 0.5
+      },
+      "model": "tenebria:item/captured_soul_jar_4"
+    },
+    {
+      "predicate": {
+        "tenebria:jar_souls": 0.625
+      },
+      "model": "tenebria:item/captured_soul_jar_5"
+    },
+    {
+      "predicate": {
+        "tenebria:jar_souls": 0.75
+      },
+      "model": "tenebria:item/captured_soul_jar_6"
+    },
+    {
+      "predicate": {
+        "tenebria:jar_souls": 0.875
+      },
+      "model": "tenebria:item/captured_soul_jar_7"
+    },
+    {
+      "predicate": {
+        "tenebria:jar_souls": 1
+      },
+      "model": "tenebria:item/captured_soul_jar_8"
+    }
+  ]
+}

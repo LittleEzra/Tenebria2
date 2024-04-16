@@ -1,9 +1,12 @@
 package net.feliscape.tenebria.block.entity;
 
+import com.google.common.collect.BiMap;
+import com.google.common.collect.ImmutableBiMap;
 import com.google.common.collect.ImmutableMap;
 import net.feliscape.tenebria.Tenebria;
+import net.feliscape.tenebria.block.ModBlocks;
 import net.feliscape.tenebria.item.ModItems;
-import net.feliscape.tenebria.item.custom.CapturedSoulsItem;
+import net.feliscape.tenebria.item.custom.SoulContainerItem;
 import net.feliscape.tenebria.screen.DistilleryMenu;
 import net.minecraft.core.*;
 import net.minecraft.nbt.CompoundTag;
@@ -24,7 +27,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AbstractFurnaceBlock;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
@@ -40,12 +42,16 @@ import java.util.Map;
 public class DistilleryBlockEntity extends BlockEntity implements MenuProvider, StackedContentsCompatible {
     int souls;
 
-    private static Map<Item, Integer> soulAmounts = ImmutableMap.<Item, Integer>builder()
-            .put(ModItems.ANCIENT_DUST.get(), 2)
-            .put(Items.SOUL_SAND, 1)
-            .put(Items.SOUL_SOIL, 1)
+    private static final Map<Item, Integer> soulAmounts = ImmutableMap.<Item, Integer>builder()
+            .put(ModItems.ANCIENT_DUST.get(), 1)
+            .put(ModBlocks.CRUMBLING_BONE.get().asItem(), 2)
             .put(Items.ANCIENT_DEBRIS, 6)
             .build();
+    private static final BiMap<Item, Item> emptyToFullContainer = ImmutableBiMap.<Item, Item>builder()
+            .put(Items.GLASS_BOTTLE, ModItems.CAPTURED_SOUL_BOTTLE.get())
+            .put(ModItems.SOUL_JAR.get(), ModItems.CAPTURED_SOUL_JAR.get())
+            .build();
+    private static final BiMap<Item, Item> fullToEmptyContainer = emptyToFullContainer.inverse();
 
     protected static final int SLOT_INPUT = 0;
     protected static final int SLOT_FUEL = 1;
@@ -53,20 +59,34 @@ public class DistilleryBlockEntity extends BlockEntity implements MenuProvider, 
     protected static final int SLOT_COUNT = 3;
 
     public static final int DATA_LIT_TIME = 0;
-    private static final int[] SLOTS_FOR_UP = new int[]{0};
-    private static final int[] SLOTS_FOR_DOWN = new int[]{2, 1};
-    private static final int[] SLOTS_FOR_SIDES = new int[]{1};
     public static final int DATA_LIT_DURATION = 1;
     public static final int DATA_COOKING_PROGRESS = 2;
     public static final int DATA_COOKING_TOTAL_TIME = 3;
     public static final int NUM_DATA_VALUES = 4;
     public static final int BURN_TIME_STANDARD = 200;
     public static final int BURN_COOL_SPEED = 2;
+    public static final int BOTTLE_FILL_TIME = 3;
 
     private final ItemStackHandler itemHandler = new ItemStackHandler(SLOT_COUNT){
         @Override
         protected int getStackLimit(int slot, @NotNull ItemStack stack) {
             return slot == SLOT_BOTTLE ? 1 : super.getStackLimit(slot, stack);
+        }
+
+        @Override
+        public void setStackInSlot(int slot, @NotNull ItemStack stack) {
+            super.setStackInSlot(slot, stack);
+            ItemStack itemstack = this.getStackInSlot(slot);
+            boolean addingToStack = !stack.isEmpty() && ItemStack.isSameItemSameTags(itemstack, stack);
+
+            if (slot == SLOT_INPUT && !addingToStack && !(stack.getItem() instanceof SoulContainerItem)) {
+                DistilleryBlockEntity.this.cookingTotalTime = getTotalCookTime();
+                DistilleryBlockEntity.this.cookingProgress = 0;
+                DistilleryBlockEntity.this.setChanged();
+            } else if (slot == SLOT_BOTTLE || (slot == SLOT_INPUT && stack.getItem() instanceof SoulContainerItem)){
+                DistilleryBlockEntity.this.fillProgress = 0;
+                DistilleryBlockEntity.this.setChanged();
+            }
         }
     };
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
@@ -74,7 +94,8 @@ public class DistilleryBlockEntity extends BlockEntity implements MenuProvider, 
     int litTime;
     int litDuration;
     int cookingProgress;
-    int cookingTotalTime;
+    int cookingTotalTime;;
+    int fillProgress;
     protected final ContainerData data;
 
     public DistilleryBlockEntity(BlockPos pPos, BlockState pBlockState) {
@@ -118,6 +139,7 @@ public class DistilleryBlockEntity extends BlockEntity implements MenuProvider, 
         this.litTime = pTag.getInt("BurnTime");
         this.cookingProgress = pTag.getInt("CookTime");
         this.cookingTotalTime = pTag.getInt("CookTimeTotal");
+        this.fillProgress = pTag.getInt("FillProgress");
         this.litDuration = this.getBurnDuration(this.itemHandler.getStackInSlot(SLOT_FUEL));
         this.souls = pTag.getInt("Souls");
     }
@@ -127,6 +149,7 @@ public class DistilleryBlockEntity extends BlockEntity implements MenuProvider, 
         pTag.putInt("BurnTime", this.litTime);
         pTag.putInt("CookTime", this.cookingProgress);
         pTag.putInt("CookTimeTotal", this.cookingTotalTime);
+        pTag.putInt("FillProgress", this.fillProgress);
         pTag.putInt("Souls", this.souls);
         pTag.put("Inventory", itemHandler.serializeNBT());
     }
@@ -149,29 +172,36 @@ public class DistilleryBlockEntity extends BlockEntity implements MenuProvider, 
         ItemStack fuelItem = pBlockEntity.itemHandler.getStackInSlot(SLOT_FUEL);
         boolean ingredientNotEmpty = !pBlockEntity.itemHandler.getStackInSlot(SLOT_INPUT).isEmpty();
         boolean fuelItemNotEmpty = !fuelItem.isEmpty();
-        if (pBlockEntity.souls > 0){
-            ItemStack bottleItem = pBlockEntity.itemHandler.getStackInSlot(SLOT_BOTTLE);
-            if (bottleItem.is(Items.GLASS_BOTTLE)){
-                pBlockEntity.souls--;
-                pBlockEntity.itemHandler.setStackInSlot(SLOT_BOTTLE, new ItemStack(ModItems.CAPTURED_SOULS.get()));
+        if (pBlockEntity.souls > 0){ // Fill Bottles
+            ++pBlockEntity.fillProgress;
+            if (pBlockEntity.fillProgress >= BOTTLE_FILL_TIME){
+                pBlockEntity.fillProgress = 0;
+                ItemStack bottleItem = pBlockEntity.itemHandler.getStackInSlot(SLOT_BOTTLE);
+                if (emptyToFullContainer.containsKey(bottleItem.getItem())){
+                    pBlockEntity.souls--;
+                    pBlockEntity.itemHandler.setStackInSlot(SLOT_BOTTLE, new ItemStack(emptyToFullContainer.get(bottleItem.getItem())));
 
-                CapturedSoulsItem.fillBottleWithSouls(pBlockEntity.itemHandler.getStackInSlot(SLOT_BOTTLE), 1);
-            } else if (bottleItem.is(ModItems.CAPTURED_SOULS.get()) && CapturedSoulsItem.getSouls(bottleItem) < CapturedSoulsItem.MAX_SOULS){
-                pBlockEntity.souls--;
+                    SoulContainerItem.setSouls(pBlockEntity.itemHandler.getStackInSlot(SLOT_BOTTLE), 1);
+                } else if (bottleItem.getItem() instanceof SoulContainerItem soulContainerItem && SoulContainerItem.getSouls(bottleItem) < soulContainerItem.getMaxSouls()){
+                    pBlockEntity.souls--;
 
-                CapturedSoulsItem.fillBottleWithSouls(bottleItem, CapturedSoulsItem.getSouls(bottleItem) + 1);
+                    SoulContainerItem.setSouls(bottleItem, SoulContainerItem.getSouls(bottleItem) + 1);
+                }
             }
         }
-        if (pBlockEntity.itemHandler.getStackInSlot(SLOT_INPUT).is(ModItems.CAPTURED_SOULS.get())){ // Empty Captured Souls
-            ItemStack inputStack = pBlockEntity.itemHandler.getStackInSlot(SLOT_INPUT);
-            if (CapturedSoulsItem.getSouls(inputStack) > 0){
-                CapturedSoulsItem.fillBottleWithSouls(inputStack, CapturedSoulsItem.getSouls(inputStack) - 1);
-                pBlockEntity.souls++;
-                if (CapturedSoulsItem.getSouls(inputStack) == 0){
-                    pBlockEntity.itemHandler.setStackInSlot(SLOT_INPUT, new ItemStack(Items.GLASS_BOTTLE));
+        ItemStack inputStack = pBlockEntity.itemHandler.getStackInSlot(SLOT_INPUT);
+        if (inputStack.getItem() instanceof SoulContainerItem){ // Empty Captured Souls
+            ++pBlockEntity.fillProgress;
+            if (pBlockEntity.fillProgress >= BOTTLE_FILL_TIME){
+                if (SoulContainerItem.getSouls(inputStack) > 0){
+                    SoulContainerItem.setSouls(inputStack, SoulContainerItem.getSouls(inputStack) - 1);
+                    pBlockEntity.souls++;
+                    if (SoulContainerItem.getSouls(inputStack) == 0){
+                        pBlockEntity.itemHandler.setStackInSlot(SLOT_INPUT, new ItemStack(fullToEmptyContainer.get(inputStack.getItem())));
+                    }
+                } else{
+                    pBlockEntity.itemHandler.setStackInSlot(SLOT_INPUT, new ItemStack(fullToEmptyContainer.get(inputStack.getItem())));
                 }
-            } else{
-                pBlockEntity.itemHandler.setStackInSlot(SLOT_INPUT, new ItemStack(Items.GLASS_BOTTLE));
             }
             changed = true;
         }
@@ -197,7 +227,6 @@ public class DistilleryBlockEntity extends BlockEntity implements MenuProvider, 
             if (pBlockEntity.isLit() && pBlockEntity.canDistill()) {
                 ++pBlockEntity.cookingProgress;
                 changed = true;
-                Tenebria.printDebug(pBlockEntity.cookingProgress);
                 if (pBlockEntity.cookingProgress >= pBlockEntity.cookingTotalTime) {
                     pBlockEntity.cookingProgress = 0;
                     pBlockEntity.cookingTotalTime = getTotalCookTime();
@@ -245,7 +274,7 @@ public class DistilleryBlockEntity extends BlockEntity implements MenuProvider, 
         }
     }
     public static boolean hasSouls(ItemStack itemStack) {
-        return soulAmounts.containsKey(itemStack.getItem());
+        return soulAmounts.containsKey(itemStack.getItem().asItem());
     }
 
     public int getSouls(){
@@ -263,84 +292,6 @@ public class DistilleryBlockEntity extends BlockEntity implements MenuProvider, 
 
     private static int getTotalCookTime() {
         return 200;
-    }
-
-    public static boolean isFuel(ItemStack pStack) {
-        return net.minecraftforge.common.ForgeHooks.getBurnTime(pStack, null) > 0;
-    }
-
-    public int[] getSlotsForFace(Direction pSide) {
-        if (pSide == Direction.DOWN) {
-            return SLOTS_FOR_DOWN;
-        } else {
-            return pSide == Direction.UP ? SLOTS_FOR_UP : SLOTS_FOR_SIDES;
-        }
-    }
-
-    /**
-     * Returns {@code true} if automation can insert the given item in the given slot from the given side.
-     */
-    public boolean canPlaceItemThroughFace(int pIndex, ItemStack pItemStack, @Nullable Direction pDirection) {
-        return this.canPlaceItem(pIndex, pItemStack);
-    }
-
-    /**
-     * Returns {@code true} if automation can extract the given item in the given slot from the given side.
-     */
-    public boolean canTakeItemThroughFace(int pIndex, ItemStack pStack, Direction pDirection) {
-        if (pDirection == Direction.DOWN && pIndex == 1) {
-            return pStack.is(Items.WATER_BUCKET) || pStack.is(Items.BUCKET);
-        } else {
-            return true;
-        }
-    }
-    /**
-     * Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
-     */
-    public void setItem(int pIndex, ItemStack pStack) {
-        ItemStack itemstack = this.itemHandler.getStackInSlot(pIndex);
-        boolean flag = !pStack.isEmpty() && ItemStack.isSameItemSameTags(itemstack, pStack);
-        this.itemHandler.setStackInSlot(pIndex, pStack);
-        if (pIndex == SLOT_BOTTLE && pStack.getCount() > 1) {
-            pStack.setCount(1);
-        }
-
-        if (pIndex == 0 && !flag) {
-            this.cookingTotalTime = getTotalCookTime();
-            this.cookingProgress = 0;
-            this.setChanged();
-        }
-
-    }
-
-    /**
-     * Don't rename this method to canInteractWith due to conflicts with Container
-     */
-    public boolean stillValid(Player pPlayer) {
-        return Container.stillValidBlockEntity(this, pPlayer);
-    }
-
-    /**
-     * Returns {@code true} if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
-     * For guis use Slot.isItemValid
-     */
-    public boolean canPlaceItem(int pIndex, ItemStack pStack) {
-        if (pIndex != 1) {
-            return true;
-        } else {
-            ItemStack itemstack = this.itemHandler.getStackInSlot(SLOT_FUEL);
-            return net.minecraftforge.common.ForgeHooks.getBurnTime(pStack, RecipeType.SMELTING) > 0 || pStack.is(Items.BUCKET) && !itemstack.is(Items.BUCKET);
-        }
-    }
-
-    private static void createExperience(ServerLevel pLevel, Vec3 pPopVec, int pRecipeIndex, float pExperience) {
-        int i = Mth.floor((float)pRecipeIndex * pExperience);
-        float f = Mth.frac((float)pRecipeIndex * pExperience);
-        if (f != 0.0F && Math.random() < (double)f) {
-            ++i;
-        }
-
-        ExperienceOrb.award(pLevel, pPopVec, i);
     }
 
     public void fillStackedContents(StackedContents pHelper) {

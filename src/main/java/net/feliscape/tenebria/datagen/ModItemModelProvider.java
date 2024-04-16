@@ -44,6 +44,9 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         simpleItem(ModItems.DUST);
         simpleItem(ModItems.ANCIENT_DUST);
+        simpleItem(ModItems.SOUL_JAR);
+        simpleItem(ModItems.SOUL_STEEL_INGOT);
+        simpleItem(ModItems.STONE_BREAD);
 
         manualBlockItem(ModBlocks.POLISHED_RIFTSTONE_STAIRS);
         manualBlockItem(ModBlocks.POLISHED_RIFTSTONE_SLAB);

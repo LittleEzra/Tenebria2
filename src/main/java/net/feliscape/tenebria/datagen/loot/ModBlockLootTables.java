@@ -41,6 +41,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 block -> BUILDERFUNCTION);*/
 
         dropSelf(ModBlocks.DISTILLERY.get());
+        dropSelf(ModBlocks.ALCHEMY_TABLE.get());
+        dropSelf(ModBlocks.SOUL_STEEL_BLOCK.get());
 
         dropSelf(ModBlocks.RIFTSTONE.get());
         dropSelf(ModBlocks.RIFTSTONE_STAIRS.get());
@@ -75,7 +77,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         });
 
         this.add(ModBlocks.CRUMBLING_BONE.get(), block -> {
-            return createSingleItemTableWithSilkTouch(block, ModItems.ANCIENT_DUST.get(), UniformGenerator.between(2f, 4f));
+            return createSingleItemTableWithSilkTouch(block, ModItems.ANCIENT_DUST.get(), UniformGenerator.between(0f, 1.6f));
         });
     }
 

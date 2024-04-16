@@ -1,4 +1,5 @@
-// 1.20.1	2024-04-13T21:26:54.9349647	Block States: tenebria
+// 1.20.1	2024-04-16T11:16:39.0147259	Block States: tenebria
+c28ffb0bcd42e10d10d0519df9c5bed8feb107e6 assets/tenebria/blockstates/crumbling_bone.json
 94b1cc53433730bd68effd880a70971f0a5830b1 assets/tenebria/blockstates/dust_block.json
 3bdce56b4129a878ecd0050701733becf0e72f82 assets/tenebria/blockstates/polished_riftstone.json
 4bee3eaf24f1bbb01ac67f455398d70330b07371 assets/tenebria/blockstates/polished_riftstone_bricks.json
@@ -14,6 +15,9 @@ d82c01c1f544e8883388625801e0b7e6b3904aed assets/tenebria/blockstates/polished_ri
 80ebffbadd13b4d5a900b928d3ba6e81ea8c6d78 assets/tenebria/blockstates/riftstone_slab.json
 1f0845541cf19c680ef667ba56f3aec575900b5e assets/tenebria/blockstates/riftstone_stairs.json
 560e46a5339b0944772e47c43d20d808b2c0ea73 assets/tenebria/blockstates/riftstone_wall.json
+247d6c383bef5cee71a7a489cb0a5a5d5d624dc8 assets/tenebria/blockstates/soul_steel_block.json
+1af41c920ef8777a0c1247c8cdec557c78bfe34f assets/tenebria/models/block/crumbling_bone.json
+b1048fb00bd409632ec7f395a016672ae23398cb assets/tenebria/models/block/crumbling_bone_horizontal.json
 bb7ecb4afdc4d9a957075a41c4a23014f9c20588 assets/tenebria/models/block/dust_block.json
 9f3af8ddf2a3a7fdd1dc37b1e9d2d72019b06156 assets/tenebria/models/block/polished_riftstone.json
 6dcea844167c243d986ac5e93ed98c29549b0904 assets/tenebria/models/block/polished_riftstone_bricks.json
@@ -46,7 +50,10 @@ f6ee8389b7db8fa00ed1074eb593496f27f326f5 assets/tenebria/models/block/riftstone_
 b3f44956628b1ac6970c13c27ef7a70b34a6cdf0 assets/tenebria/models/block/riftstone_wall_post.json
 0faeb0e694f72c390be84a703552a1b59eb8c7b1 assets/tenebria/models/block/riftstone_wall_side.json
 369041fa1c97aafae61ec6944f629bc0bff53c80 assets/tenebria/models/block/riftstone_wall_side_tall.json
+b8b83d06a3e16c4c8a90f01c7692d75fc5f8d261 assets/tenebria/models/block/soul_steel_block.json
+103a0a46b38bba8471e6b35b8a81cb768bd6ae6f assets/tenebria/models/item/crumbling_bone.json
 75b59b882d4b5eb01ea4eb3f76e338f941bc1809 assets/tenebria/models/item/dust_block.json
 00909117ebd954e6b13ed4a121288fb5d347b624 assets/tenebria/models/item/polished_riftstone.json
 08b9fcd30e2be15c401470008c200858923776bc assets/tenebria/models/item/polished_riftstone_bricks.json
 a9e6756d7af55788bb8a9b0b1d491da64fdc6e49 assets/tenebria/models/item/riftstone.json
+1f5ef3bb7a2b5b80ceb2b46deda299631d4d28bc assets/tenebria/models/item/soul_steel_block.json

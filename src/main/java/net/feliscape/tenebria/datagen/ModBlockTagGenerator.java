@@ -26,6 +26,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.DUST_BLOCK.get());
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(
+                        ModBlocks.SOUL_STEEL_BLOCK.get(),
+                        ModBlocks.CRUMBLING_BONE.get(),
                         ModBlocks.DISTILLERY.get(),
                         ModBlocks.RIFTSTONE.get(),
                         ModBlocks.RIFTSTONE_SLAB.get(),
@@ -44,6 +46,10 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.POLISHED_RIFTSTONE_BRICKS_STAIRS.get(),
                         ModBlocks.POLISHED_RIFTSTONE_BRICKS_WALL.get()
                         );
+        this.tag(BlockTags.NEEDS_IRON_TOOL)
+                .add(
+                        ModBlocks.SOUL_STEEL_BLOCK.get()
+                );
         this.tag(BlockTags.WALLS)
                 .add(
                         ModBlocks.RIFTSTONE_WALL.get(),

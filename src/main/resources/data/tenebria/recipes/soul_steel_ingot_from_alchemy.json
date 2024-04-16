@@ -1,0 +1,12 @@
+{
+  "type": "tenebria:alchemy",
+  "ingredients": [
+    { "item": "minecraft:iron_ingot" },
+    { "item": "minecraft:iron_ingot" }
+  ],
+  "soul_cost": 4,
+  "result": {
+    "item": "tenebria:soul_steel_ingot",
+    "count": 2
+  }
+}
